@@ -1,20 +1,4 @@
-class Vector
-{
-public:
-	float x;
-	float y;
-
-	Vector();
-	Vector::Vector(float x, float y);
-	~Vector();
-
-	Vector operator+(Vector const & rhs)const;
-	Vector operator-(Vector const & rhs)const;
-	Vector operator*(float rhs)const;
-	Vector operator/(float rhs)const;
-	Vector & operator+=(Vector const & rhs);
-	Vector & operator-=(Vector const & rhs);
-};
+#include "Vector.hpp"
 
 Vector::Vector() : x(0), y(0)
 {
@@ -28,6 +12,16 @@ Vector::Vector(float x, float y)
 
 Vector::~Vector()
 {
+}
+
+float	Vector::norm() const
+{
+	return std::sqrt(x*x + y*y);
+}
+
+Vector	Vector::normed() const
+{
+	return *this / norm();
 }
 
 Vector Vector::operator+(Vector const & rhs)const
@@ -72,4 +66,8 @@ Vector operator*(float f, Vector const & rhs)
 {
 	Vector ret(rhs.x * f, rhs.y * f);
 	return (ret);
+}
+
+Vector::operator Vector2() const	{
+    return (Vector2){x, y}; 
 }

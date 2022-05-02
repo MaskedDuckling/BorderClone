@@ -1,23 +1,30 @@
-NAME = Zelda
+NAME = dark_zombie
 
 CC = g++
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = main.c
+SRC = main.cpp		\
+	Perso.cpp		\
+	Vector.cpp		\
+	Game.cpp
 
-OBJ = $(SRC:.c=.o)
+SRCS		= $(addprefix srcs/, $(SRC))
+
+OBJS		= $(addprefix objs/, $(SRC:.cpp=.o))
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(OBJ) -lraylib -lGL -lm -lpthread -ldl -lrt -lX11 $(CFLAGS) -o $(NAME)
+$(NAME): $(OBJS)
+	$(CC) $(OBJS) -lraylib -lGL -lm -lpthread -ldl -lrt -lX11 $(CFLAGS) -o $(NAME)
 
-.c.o:
-	$(CC) $(CFLAGS) -c $<
+objs/%.o:	srcs/%.cpp
+			$(CC) $(CFLAGS) -o $@ -c $<
+#.c.o:
+#	$(CC) $(CFLAGS) -c $<
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
