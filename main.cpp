@@ -44,9 +44,12 @@ int main(void)
 	InitWindow(screenWidth, screenHeight, "raylib [core] example - keyboard input");
 	SetTargetFPS(60); 
 	menu();
+	std::cout << "\n\nSTART\n\n";
 	while (!(WindowShouldClose()))
 	{
-	
+		BeginDrawing();
+
+		EndDrawing();
 	}
 	CloseWindow();
 	return 0;
