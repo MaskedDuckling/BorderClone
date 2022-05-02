@@ -1,6 +1,6 @@
 NAME = Zelda
 
-CC = cc
+CC = g++
 
 CFLAGS = -Wall -Wextra -Werror
 
