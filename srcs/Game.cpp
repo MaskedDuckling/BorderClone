@@ -4,7 +4,7 @@ Texture2D Player::_texture;
 Texture2D Ennemy::_texture;
 
 
-Game::Game() : player(50.f, 50.f)
+Game::Game() : player(WIDTH / 2, HEIGHT/ 2)
 {   
     screenWidth = WIDTH;
     screenHeight = HEIGHT;
@@ -14,12 +14,14 @@ Game::Game() : player(50.f, 50.f)
     DrawRectangle(0, 0, WIDTH, HEIGHT, BLACK);
     Player::_texture = LoadTexture("sprites/Character.png");
     Ennemy::_texture = LoadTexture("sprites/ennemy.png");
+    background = LoadTexture("sprites/background.png");
 }
 
 Game::~Game()
 {
 	UnloadTexture(Player::_texture);
 	UnloadTexture(Ennemy::_texture);
+    UnloadTexture(background);
 	CloseWindow();
 }
 
@@ -30,9 +32,9 @@ int	Game::menu()
     {
         BeginDrawing();
         DrawTexture(title, -50, -50, WHITE);
-        DrawText("Dark Zombie", 0, 0, 50, GREEN);
-        DrawText("Play",150, 150, 50, BLACK);
-        DrawText("Exit",150, 300, 50, BLACK);
+        DrawText("BORDERCLONE", 0, 0, 50, WHITE);
+        DrawText("Play",150, 150, 50, WHITE);
+        DrawText("Exit",150, 300, 50, WHITE);
         EndDrawing();
         if(WindowShouldClose())
             ft_exit(); 
@@ -43,15 +45,20 @@ int	Game::menu()
     return (1);
 }
 
+void Game::repousse(){
+    for (Ennemy & cur: ennemies)
+        if (player._position.distance(cur._position) < 200){
+            cur._position += ((cur._position - player._position).normed()) * 2 * (200 - player._position.distance(cur._position));
+            cur.stuned = GetTime();
+        }
+}
+
 void Game::loop()
 {
-    // int key;
-    //     std::cout << key << "   ";
-    // if ((key = GetKeyPressed()) != 0)
-    while (player._Health != 0)
+    while (player._Health > 0)
     {
         //update()
-        while (ennemies.size() <= 10){
+        while (ennemies.size() <= 25){
             int randominator = rand();
             randominator %= (2*HEIGHT);
             if (randominator < HEIGHT)
@@ -62,20 +69,24 @@ void Game::loop()
         }
         if(WindowShouldClose())
             ft_exit();
+        bool contact = false;
         player.update();
         for (Ennemy & cur: ennemies)
-            cur.update(player);
-
+            contact |= cur.update(player);
+        if (contact)
+            repousse();
         for (auto it = ennemies.begin(); it != ennemies.end(); it++)
             if (it->_Health <= 0)   {
                 auto it2 = it;
                 it--;
                 ennemies.erase(it2);
+                player.score++;
             }
 
         // render()
         BeginDrawing();
-        ClearBackground(RAYWHITE);
+        ClearBackground(BLACK);
+        DrawTexture(background, 0, 0, GRAY);
         player.render();
         for (Ennemy & cur: ennemies)
             cur.render();

@@ -2,7 +2,8 @@ NAME = BorderClone
 
 CC = g++
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror 
+-fsanitize=address
 
 SRC = main.cpp		\
 	Player.cpp		\

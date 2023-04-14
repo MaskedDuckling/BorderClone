@@ -7,11 +7,14 @@
 class Ennemy : public Entite{
 public:
     static Texture2D _texture;
+    int             degats;
+    float           stuned;
 
     Ennemy(float x, float y);
     ~Ennemy();
 
-    void	update(Player & player);
+    void checkcollision(std::list<projectile> & ref);
+    int	update(Player & player);
     void	render();
 };
 

@@ -4,14 +4,15 @@
 #include "Player.hpp"
 #include "Ennemy.hpp"
 
-#define WIDTH 960
-#define HEIGHT 540
+#define WIDTH 965
+#define HEIGHT 650
 
 class Game
 {
 private:
     int screenWidth;
     int screenHeight;
+    Texture2D background;
 
     Player player;
     std::list<Ennemy>   ennemies;
@@ -20,6 +21,7 @@ public:
     Game();
     ~Game();
 
+    void repousse();
     int	menu();
     void loop();
 };

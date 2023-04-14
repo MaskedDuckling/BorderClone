@@ -11,7 +11,9 @@ class Player : public Entite
 {
 private:
 public:
+    int score;
     Arme _pistolet;
+    Shotgun _fusilapompe;
     
     static Texture2D _texture;
     Player();

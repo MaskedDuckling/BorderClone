@@ -19,7 +19,7 @@ struct projectile{
 
 class Arme{
     public:
-        double    _interval;
+        double  _interval;
         double  _lastshot;
         std::list<projectile> _proj;
         Player &_player;
@@ -29,6 +29,15 @@ class Arme{
         void update();
         void render();
 
+};
+
+class Shotgun: public Arme
+{
+public:
+    Shotgun(Player &ref);
+
+    void update();
+    void shoot();
 };
 
 #endif

@@ -19,6 +19,10 @@ Vector::~Vector()
 {
 }
 
+float Vector::distance(Vector & ref){
+	return ((*this - ref).norm());
+}
+
 float	Vector::norm() const
 {
 	return std::sqrt(x*x + y*y);

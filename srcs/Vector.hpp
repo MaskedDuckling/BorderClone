@@ -17,6 +17,7 @@ public:
 
 	~Vector();
 
+	float	distance(Vector & ref);
 	float	norm() const;
 	Vector	normed() const;
 

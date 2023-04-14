@@ -1,18 +1,16 @@
 #include "Ennemy.hpp"
 
-Ennemy::Ennemy(float x, float y) : Entite(x,y,2,30, 8){}
+Ennemy::Ennemy(float x, float y) : Entite(x,y,1,10, 8), degats(10){
+    stuned = 0;
+}
 
 Ennemy::~Ennemy(){
 }
 
-void Ennemy::update(Player & player)
-{
-    Vector dir = player._position - _position;
-    dir = dir.normed();
-    move(dir * _mSpeed);
+void Ennemy::checkcollision(std::list<projectile> & ref){
     std::list<std::list<projectile>::iterator> toremove;
-    auto it = player._pistolet._proj.begin();
-    for (projectile &cur : player._pistolet._proj) {
+    auto it = ref.begin();
+    for (projectile &cur : ref) {
         if (CheckCollisionCircles(_position, radius, cur._position, 5)) {
             getHurt(cur._degats);
             toremove.push_back(it);
@@ -21,8 +19,23 @@ void Ennemy::update(Player & player)
     }
 
     for (auto &ite : toremove)
-        player._pistolet._proj.erase(ite);
-        
+        ref.erase(ite);
+}
+
+int Ennemy::update(Player & player)
+{
+    Vector dir = player._position - _position;
+    dir = dir.normed();
+    if (GetTime() - stuned >= 1)
+        move(dir * _mSpeed);
+    checkcollision(player._pistolet._proj);
+    checkcollision(player._fusilapompe._proj);
+
+    if (CheckCollisionCircles(_position, radius, player._position, player.radius)){
+        player.getHurt(degats);
+        return (1);
+    }
+    return (0);
 }
 
 void Ennemy::render(){
