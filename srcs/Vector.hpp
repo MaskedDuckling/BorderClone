@@ -3,6 +3,7 @@
 
 #include <math.h>
 #include <raylib.h>
+#include <iostream>
 
 class Vector
 {
@@ -12,6 +13,8 @@ public:
 
 	Vector();
 	Vector(float x, float y);
+	Vector(int x, int y);
+
 	~Vector();
 
 	float	norm() const;
@@ -26,5 +29,7 @@ public:
 
 	operator Vector2() const;
 };
+
+std::ostream &operator<<(std::ostream &out, Vector const & rhs);
 
 #endif 

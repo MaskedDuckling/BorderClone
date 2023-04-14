@@ -1,8 +1,8 @@
 #ifndef GAME_HPP
 # define GAME_HPP
 
-#include <list>
-#include "Perso.hpp"
+#include "Player.hpp"
+#include "Ennemy.hpp"
 
 #define WIDTH 960
 #define HEIGHT 540
@@ -13,15 +13,18 @@ private:
     int screenWidth;
     int screenHeight;
 
-    Perso player;
-    std::List<Mob>    ennemies;
+    Player player;
+    std::list<Ennemy>   ennemies;
 
 public:
     Game();
     ~Game();
 
     int	menu();
-    void render();
+    void loop();
 };
+
+void	ft_exit();
+int	menu_mouse_click();
 
 #endif

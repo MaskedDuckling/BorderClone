@@ -1,21 +1,20 @@
-#ifndef MOB_HPP
-# define MOB_HPP
+#ifndef ENTITE_HPP
+# define ENTITE_HPP
 
 #include <raylib.h>
 #include "Vector.hpp"
 
-class Mob
+class Entite
 {
-private:
-	Vector _position;
-	int _mSpeed;
-	int _Health;
-	Texture2D _texture;
-
 public:
-	Mob();
-    Mob(float x, float y, Texture2D *texture);
-	~Mob();
+	Vector		_position;
+	int			_mSpeed;
+	int			_Health;
+	float 		radius;
+
+	Entite();
+    Entite(float x, float y, int mspeed, int Health, float radius);
+	~Entite();
 	void    move_x(float dx);
 	void    move_y(float dy);
 	void    move(Vector const &v);

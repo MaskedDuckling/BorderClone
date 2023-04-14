@@ -1,24 +1,18 @@
 #ifndef ENNEMY_HPP
 # define ENNEMY_HPP
 
-#include "Vector.hpp"
-#include "Perso.hpp"
+#include "Entite.hpp"
+#include "Player.hpp"
 
-class Ennemy : public Perso
-{
-private:
-	
+class Ennemy : public Entite{
 public:
-	Ennemy();
-	~Ennemy();
+    static Texture2D _texture;
+
+    Ennemy(float x, float y);
+    ~Ennemy();
+
+    void	update(Player & player);
+    void	render();
 };
-
-Ennemy::Ennemy(/* args */)
-{
-}
-
-Ennemy::~Ennemy()
-{
-}
 
 #endif

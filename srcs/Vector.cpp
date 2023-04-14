@@ -4,10 +4,15 @@ Vector::Vector() : x(0), y(0)
 {
 }
 
-Vector::Vector(float x, float y)
+Vector::Vector(int x2, int y2){
+	x=x2;
+	y=y2;
+}
+
+Vector::Vector(float x2, float y2)
 {
-	x = x;
-	y = y;
+	x = x2;
+	y = y2;
 }
 
 Vector::~Vector()
@@ -32,7 +37,7 @@ Vector Vector::operator+(Vector const & rhs)const
 
 Vector Vector::operator-(Vector const & rhs)const
 {
-	Vector ret(rhs.x - this->x, rhs.y - this->y);
+	Vector ret(this->x - rhs.x, this->y - rhs.y);
 	return (ret);
 }
 
@@ -70,4 +75,11 @@ Vector operator*(float f, Vector const & rhs)
 
 Vector::operator Vector2() const	{
     return (Vector2){x, y}; 
+}
+
+
+std::ostream &operator<<(std::ostream &out, Vector const & rhs)
+{
+	out << "x: " << rhs.x << " y: " << rhs.y;
+	return out;
 }

@@ -1,12 +1,15 @@
-NAME = dark_zombie
+NAME = BorderClone
 
 CC = g++
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 SRC = main.cpp		\
-	Perso.cpp		\
+	Player.cpp		\
+	Arme.cpp		\
 	Vector.cpp		\
+	Entite.cpp		\
+	Ennemy.cpp		\
 	Game.cpp
 
 SRCS		= $(addprefix srcs/, $(SRC))
@@ -20,8 +23,8 @@ $(NAME): $(OBJS)
 
 objs/%.o:	srcs/%.cpp
 			$(CC) $(CFLAGS) -o $@ -c $<
-#.c.o:
-#	$(CC) $(CFLAGS) -c $<
+.c.o:
+	$(CC) $(CFLAGS) -c $<
 
 clean:
 	rm -f $(OBJS)
