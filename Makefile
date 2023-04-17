@@ -2,8 +2,7 @@ NAME = BorderClone
 
 CC = g++
 
-CFLAGS = -Wall -Wextra -Werror 
--fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 SRC = main.cpp		\
 	Player.cpp		\
@@ -11,6 +10,8 @@ SRC = main.cpp		\
 	Vector.cpp		\
 	Entite.cpp		\
 	Ennemy.cpp		\
+	Carte.cpp		\
+	TileMap.cpp		\
 	Game.cpp
 
 SRCS		= $(addprefix srcs/, $(SRC))

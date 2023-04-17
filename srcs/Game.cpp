@@ -3,18 +3,18 @@
 Texture2D Player::_texture;
 Texture2D Ennemy::_texture;
 
-
-Game::Game() : player(WIDTH / 2, HEIGHT/ 2)
+Game::Game() : player(WIDTH / 2, HEIGHT/ 2), carte("maps/maps1.txt")
 {   
     screenWidth = WIDTH;
     screenHeight = HEIGHT;
     
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - keyboard input");
+    InitWindow(screenWidth, screenHeight, "BorderClone");
     SetTargetFPS(60);
     DrawRectangle(0, 0, WIDTH, HEIGHT, BLACK);
     Player::_texture = LoadTexture("sprites/Character.png");
     Ennemy::_texture = LoadTexture("sprites/ennemy.png");
     background = LoadTexture("sprites/background.png");
+    std::cout << carte;
 }
 
 Game::~Game()
@@ -55,6 +55,7 @@ void Game::repousse(){
 
 void Game::loop()
 {
+    carte.sprites.init();
     while (player._Health > 0)
     {
         //update()
@@ -86,8 +87,8 @@ void Game::loop()
         // render()
         BeginDrawing();
         ClearBackground(BLACK);
-        DrawTexture(background, 0, 0, GRAY);
         player.render();
+        carte.render();
         for (Ennemy & cur: ennemies)
             cur.render();
         EndDrawing();

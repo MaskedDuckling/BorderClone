@@ -1,0 +1,25 @@
+#W=tonneau
+# =bloc blanc
+#C=coffre ferme
+#P=porte ferme
+#B=grosse caisse
+#A=Autel
+#S=spawn
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+W     CC                     W
+W                            W
+W                            W
+W   P        S          BBB  W
+W                 A          W
+W                            W
+W                            W
+W                            W
+W                            W
+W                            W
+W                            W
+W                            W
+W                            W
+W                            W
+W                            W
+W                            W
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW

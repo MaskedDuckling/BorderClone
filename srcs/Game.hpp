@@ -3,6 +3,8 @@
 
 #include "Player.hpp"
 #include "Ennemy.hpp"
+#include "Carte.hpp"
+#include "TileMap.hpp"
 
 #define WIDTH 965
 #define HEIGHT 650
@@ -16,6 +18,7 @@ private:
 
     Player player;
     std::list<Ennemy>   ennemies;
+    Carte carte;
 
 public:
     Game();
